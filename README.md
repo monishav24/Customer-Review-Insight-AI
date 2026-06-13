@@ -242,7 +242,7 @@ Customer-Review-Insight-AI/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/mv240/Customer-Review-Insight-AI.git
+git clone https://github.com/monishav24/Customer-Review-Insight-AI.git
 cd Customer-Review-Insight-AI
 ```
 
@@ -328,9 +328,9 @@ Distributed under the MIT License. See `LICENSE` for more details.
 
 ## 👤 Author & Contact
 
-*   **GitHub**: [@mv240](https://github.com/mv240)
+*   **GitHub**: [@monishav24](https://github.com/monishav24)
 *   **Email**: mv240@example.com
-*   **Portfolio Showcase**: [Customer-Review-Insight-AI Portfolio](https://mv240.github.io/Customer-Review-Insight-AI/)
+*   **Portfolio Showcase**: [Customer-Review-Insight-AI Portfolio](https://monishav24.github.io/Customer-Review-Insight-AI/)
 
 ---
 
