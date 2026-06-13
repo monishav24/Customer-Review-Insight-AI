@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Review Insight AI — Aspect-Based Sentiment Platform</title>
+    <meta name="description" content="A premium AI-powered Aspect-Based Sentiment Analysis platform built with Flask, spaCy, and Hugging Face Transformers.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">🤖</span>
+                <span class="logo-text">Review<span>Insight.AI</span></span>
+            </a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#overview" class="nav-link">Overview</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#pipeline" class="nav-link">NLP Pipeline</a></li>
+                <li><a href="#tech-stack" class="nav-link">Tech Stack</a></li>
+                <li><a href="#architecture" class="nav-link">Architecture</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#workflow" class="nav-link">Workflow</a></li>
+                <li><a href="#author" class="nav-link nav-cta">Contact Developer</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-bg-glows">
+            <div class="glow glow-1"></div>
+            <div class="glow glow-2"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge-recruiter">🚀 Recruiter & ML Reviewer Showcase</div>
+                <h1 class="hero-title">Customer Review<br><span class="gradient-text">Insight AI</span></h1>
+                <p class="hero-subtitle">
+                    An enterprise-grade, Aspect-Based Sentiment Analysis (ABSA) platform. Deconstruct complex customer feedback, extract critical business aspects, and classify sentiments with transformer-level confidence scoring.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://github.com/mv240/Customer-Review-Insight-AI" class="btn btn-primary" target="_blank">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                        View GitHub Repository
+                    </a>
+                    <a href="https://github.com/mv240/Customer-Review-Insight-AI/tree/main/customer_review" class="btn btn-secondary" target="_blank">
+                        <svg class="btn-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                        View Source Code
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Hero Interactive Dashboard Visual -->
+            <div class="hero-visual">
+                <div class="glass-card dashboard-preview-card">
+                    <div class="card-header-bar">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                        <span class="preview-title">Inference Engine Live Dashboard Simulator</span>
+                    </div>
+                    <div class="preview-stats">
+                        <div class="stat-box">
+                            <span class="stat-label">System Accuracy</span>
+                            <span class="stat-value animate-number" data-target="94">0</span><span class="pct">%</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-label">Inference Latency</span>
+                            <span class="stat-value animate-number" data-target="184">0</span><span class="ms">ms</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-label">Reviews Processed</span>
+                            <span class="stat-value animate-number" data-target="15280">0</span>
+                        </div>
+                    </div>
+                    <div class="dashboard-chart-demo">
+                        <div class="chart-header">
+                            <h4>Aspect Frequency & Sentiment Breakdown</h4>
+                            <span class="badge-active">Interactive</span>
+                        </div>
+                        <div class="chart-bars">
+                            <div class="chart-bar-row" data-aspect="performance">
+                                <span class="aspect-name">Performance</span>
+                                <div class="bar-container">
+                                    <div class="bar positive" style="width: 70%"></div>
+                                    <div class="bar negative" style="width: 15%"></div>
+                                    <div class="bar neutral" style="width: 15%"></div>
+                                </div>
+                                <span class="aspect-pct">70% Pos</span>
+                            </div>
+                            <div class="chart-bar-row" data-aspect="ui-ux">
+                                <span class="aspect-name">UI / UX Design</span>
+                                <div class="bar-container">
+                                    <div class="bar positive" style="width: 82%"></div>
+                                    <div class="bar negative" style="width: 8%"></div>
+                                    <div class="bar neutral" style="width: 10%"></div>
+                                </div>
+                                <span class="aspect-pct">82% Pos</span>
+                            </div>
+                            <div class="chart-bar-row" data-aspect="pricing">
+                                <span class="aspect-name">Pricing</span>
+                                <div class="bar-container">
+                                    <div class="bar positive" style="width: 40%"></div>
+                                    <div class="bar negative" style="width: 45%"></div>
+                                    <div class="bar neutral" style="width: 15%"></div>
+                                </div>
+                                <span class="aspect-pct">40% Pos</span>
+                            </div>
+                            <div class="chart-bar-row" data-aspect="support">
+                                <span class="aspect-name">Customer Care</span>
+                                <div class="bar-container">
+                                    <div class="bar positive" style="width: 63%"></div>
+                                    <div class="bar negative" style="width: 25%"></div>
+                                    <div class="bar neutral" style="width: 12%"></div>
+                                </div>
+                                <span class="aspect-pct">63% Pos</span>
+                            </div>
+                        </div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="dot-legend pos"></span>Positive</span>
+                            <span class="legend-item"><span class="dot-legend neg"></span>Negative</span>
+                            <span class="legend-item"><span class="dot-legend neu"></span>Neutral</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Overview -->
+    <section id="overview" class="section overview-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The Challenge of Review Scale</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">
+                    Why simple document-level sentiment is no longer enough for modern customer analytics.
+                </p>
+            </div>
+            <div class="overview-grid">
+                <div class="overview-text">
+                    <h3>Deconstructing Feedback Beyond "Good" or "Bad"</h3>
+                    <p>
+                        Traditional sentiment tools analyze a whole review and score it positive or negative. However, real-world customer feedback is mixed: <em>"The app performance is extremely fast, but the user interface is cluttered and subscription pricing is too expensive."</em>
+                    </p>
+                    <p>
+                        <strong>Aspect-Based Sentiment Analysis (ABSA)</strong> solves this by dividing sentences into distinct aspect terms (e.g., "performance", "user interface", "pricing") and assigning specific sentiment orientations and confidence scores to each aspect.
+                    </p>
+                    <div class="overview-highlight-box">
+                        <h4>Business Value Delivered:</h4>
+                        <ul>
+                            <li>🎯 <strong>Targeted product iterations</strong> by pointing out exactly which features fail.</li>
+                            <li>⚡ <strong>Automated customer service ticketing</strong> prioritized by negative sentiment confidence.</li>
+                            <li>📈 <strong>Competitor benchmarking</strong> across specific performance indicators.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="overview-visual-card">
+                    <div class="glass-card sentence-breakdown-card">
+                        <div class="card-header-bar">
+                            <span>NLP Parser Visualization</span>
+                        </div>
+                        <p class="sample-sentence">
+                            "The <span class="tag-aspect text-violet">camera</span> is spectacular but the <span class="tag-aspect text-indigo">battery life</span> is disappointing."
+                        </p>
+                        <div class="parsed-results">
+                            <div class="parsed-item">
+                                <span class="parsed-aspect">📸 aspect: camera</span>
+                                <span class="parsed-sentiment positive">Positive (98% confidence)</span>
+                            </div>
+                            <div class="parsed-item">
+                                <span class="parsed-aspect">🔋 aspect: battery life</span>
+                                <span class="parsed-sentiment negative">Negative (94% confidence)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Core Platform Features</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">
+                    A robust suite of engineering capabilities designed for high-fidelity NLP analysis.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Aspect-Based Sentiment</h3>
+                    <p>Granular classification mapping sentiments to individual features or topics rather than standard document-wide pooling.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">🤗</div>
+                    <h3>Transformer Models</h3>
+                    <p>Powered by state-of-the-art Hugging Face models for deep contextual representations and semantic awareness.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>spaCy NLP Processing</h3>
+                    <p>Tokenization, Part-Of-Speech (POS) tagging, and dependency parsing to isolate noun chunks and candidate aspect terms.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Confidence Scoring</h3>
+                    <p>Generates class probability distributions for every prediction, allowing automated filtering of low-confidence predictions.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3>CSV Dataset Upload</h3>
+                    <p>Support for bulk data processing. Upload CSV spreadsheets, validate schema, and batch process asynchronously.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Dashboard Analytics</h3>
+                    <p>Interactive metrics charts showing aspect frequency, sentiment trends over time, and distribution analytics.</p>
+                </div>
+                <!-- Feature 7 -->
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>PDF Report Export</h3>
+                    <p>Generate clean, professional, recruiter-ready PDF summaries of review aspects and sentiment scores with a single click.</p>
+                </div>
+                <!-- Feature 8 -->
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>User Authentication</h3>
+                    <p>Secure registration and login endpoints utilizing session-based state management and password hashing (PBKDF2).</p>
+                </div>
+                <!-- Feature 9 -->
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">🗄️</div>
+                    <h3>SQLAlchemy ORM</h3>
+                    <p>Clean database interactions mapping Python models to MySQL relational tables representing users, uploads, and texts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NLP Pipeline Section -->
+    <section id="pipeline" class="section pipeline-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The NLP Pipeline Architecture</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">
+                    How raw customer reviews are converted into structured business insights.
+                </p>
+            </div>
+            
+            <div class="pipeline-container">
+                <!-- Step 1 -->
+                <div class="pipeline-step">
+                    <div class="step-num">01</div>
+                    <div class="step-card glass-card">
+                        <h4>Raw Reviews Input</h4>
+                        <p>User uploads CSV database or pastes multi-sentence review strings via dashboard input fields.</p>
+                    </div>
+                </div>
+                <!-- Arrow -->
+                <div class="pipeline-arrow">➔</div>
+                <!-- Step 2 -->
+                <div class="pipeline-step">
+                    <div class="step-num">02</div>
+                    <div class="step-card glass-card">
+                        <h4>spaCy Processing</h4>
+                        <p>Tokens are filtered for stop-words, lemmatized, and POS tagger isolates noun phrases (Aspect candidates).</p>
+                    </div>
+                </div>
+                <!-- Arrow -->
+                <div class="pipeline-arrow">➔</div>
+                <!-- Step 3 -->
+                <div class="pipeline-step">
+                    <div class="step-num">03</div>
+                    <div class="step-card glass-card">
+                        <h4>Transformer Classifier</h4>
+                        <p>Aspect context is fed into a Hugging Face Sentiment Classifier to generate positive, negative, or neutral predictions.</p>
+                    </div>
+                </div>
+                <!-- Arrow -->
+                <div class="pipeline-arrow">➔</div>
+                <!-- Step 4 -->
+                <div class="pipeline-step">
+                    <div class="step-num">04</div>
+                    <div class="step-card glass-card">
+                        <h4>Confidence & Storage</h4>
+                        <p>Model scores confidence, correlates results with users, and registers metadata in the MySQL relational DB.</p>
+                    </div>
+                </div>
+                <!-- Arrow -->
+                <div class="pipeline-arrow">➔</div>
+                <!-- Step 5 -->
+                <div class="pipeline-step">
+                    <div class="step-num">05</div>
+                    <div class="step-card glass-card">
+                        <h4>Visualization</h4>
+                        <p>Aggregated scores and frequencies render interactively on the Flask user dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="section tech-stack-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The Technology Stack</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">
+                    Engineered with modern tools for reliability, scale, and high-performance processing.
+                </p>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="tech-card glass-card">
+                    <div class="tech-icon">🐍</div>
+                    <h3>Python</h3>
+                    <p>Core programming language powering the data science operations and Flask server core.</p>
+                </div>
+                <div class="tech-card glass-card">
+                    <div class="tech-icon">🌶️</div>
+                    <h3>Flask</h3>
+                    <p>Micro-framework used for web server routing, user sessions, REST APIs, and page rendering.</p>
+                </div>
+                <div class="tech-card glass-card">
+                    <div class="tech-icon">💫</div>
+                    <h3>spaCy</h3>
+                    <p>Industrial-strength natural language processing used for linguistic annotations and dependency parsing.</p>
+                </div>
+                <div class="tech-card glass-card">
+                    <div class="tech-icon">🤗</div>
+                    <h3>Hugging Face</h3>
+                    <p>Used to run state-of-the-art Transformer models for aspect level sentiment classification.</p>
+                </div>
+                <div class="tech-card glass-card">
+                    <div class="tech-icon">🔌</div>
+                    <h3>SQLAlchemy</h3>
+                    <p>Python Object Relational Mapper (ORM) ensuring SQL-injection safe queries and database integrity.</p>
+                </div>
+                <div class="tech-card glass-card">
+                    <div class="tech-icon">🐬</div>
+                    <h3>MySQL</h3>
+                    <p>Relational Database Management System storing structured user profiles, uploads metadata, and text.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="section architecture-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">System Architecture</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">
+                    A structured overview of the application components and user request lifecycle.
+                </p>
+            </div>
+            <div class="architecture-grid">
+                <div class="architecture-diagram-container">
+                    <!-- SVG Flowchart -->
+                    <svg viewBox="0 0 800 450" class="architecture-svg">
+                        <defs>
+                            <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Browser Block -->
+                        <rect x="50" y="175" width="140" height="100" rx="12" fill="url(#grad-blue)" />
+                        <text x="120" y="220" fill="#ffffff" font-family="Outfit" font-size="16" text-anchor="middle" font-weight="bold">Client Browser</text>
+                        <text x="120" y="245" fill="#e0f2fe" font-family="Inter" font-size="12" text-anchor="middle">(HTML5 / CSS / JS)</text>
+                        
+                        <!-- Arrow 1 -->
+                        <path d="M 190 225 L 260 225" stroke="#8b5cf6" stroke-width="3" fill="none" marker-end="url(#arrow)" />
+                        <text x="225" y="210" fill="#a5b4fc" font-family="Inter" font-size="11" text-anchor="middle">HTTP / Forms</text>
+
+                        <!-- Flask Backend -->
+                        <rect x="270" y="150" width="200" height="150" rx="16" fill="url(#grad-purple)" />
+                        <text x="370" y="195" fill="#ffffff" font-family="Outfit" font-size="18" text-anchor="middle" font-weight="bold">Flask Backend</text>
+                        <text x="370" y="220" fill="#ddd6fe" font-family="Inter" font-size="12" text-anchor="middle">app.py / Session Auth</text>
+                        <text x="370" y="245" fill="#ddd6fe" font-family="Inter" font-size="12" text-anchor="middle">ORM / Routing Engine</text>
+
+                        <!-- Arrow to DB -->
+                        <path d="M 370 300 L 370 360" stroke="#8b5cf6" stroke-width="3" fill="none" />
+                        <!-- Database -->
+                        <rect x="290" y="360" width="160" height="70" rx="12" fill="#1e293b" stroke="#8b5cf6" stroke-width="2" />
+                        <text x="370" y="395" fill="#ffffff" font-family="Outfit" font-size="15" text-anchor="middle" font-weight="bold">MySQL Database</text>
+                        <text x="370" y="415" fill="#94a3b8" font-family="Inter" font-size="11" text-anchor="middle">Users / Uploads / Texts</text>
+
+                        <!-- Arrow 2 -->
+                        <path d="M 470 225 L 540 225" stroke="#8b5cf6" stroke-width="3" fill="none" />
+                        <text x="505" y="210" fill="#a5b4fc" font-family="Inter" font-size="11" text-anchor="middle">NLP Call</text>
+
+                        <!-- NLP Engine -->
+                        <rect x="550" y="150" width="200" height="150" rx="16" fill="url(#grad-blue)" />
+                        <text x="650" y="195" fill="#ffffff" font-family="Outfit" font-size="18" text-anchor="middle" font-weight="bold">NLP ML Engine</text>
+                        <text x="650" y="220" fill="#e0f2fe" font-family="Inter" font-size="12" text-anchor="middle">spaCy parsing</text>
+                        <text x="650" y="245" fill="#e0f2fe" font-family="Inter" font-size="12" text-anchor="middle">Transformers ABSA</text>
+                    </svg>
+                </div>
+                <div class="architecture-explanation">
+                    <h3>Synchronized Flow & Integrity</h3>
+                    <p>
+                        The application implements a clean **Model-View-Controller (MVC)** pattern:
+                    </p>
+                    <ul class="arch-list">
+                        <li><strong>Frontend View:</strong> Renders dashboard layouts, file lists, database history, and flash alerts.</li>
+                        <li><strong>Flask Controller:</strong> Handles authentication middleware, secure password checking, uploads hashing, and routing.</li>
+                        <li><strong>Database Layer:</strong> Handled entirely using SQLAlchemy ORM tables to ensure structure, schema validation, and SQL safety.</li>
+                        <li><strong>NLP Inference Engine:</strong> Processes raw text inputs through spaCy linguistic rules and Hugging Face pipelines to deliver confidence distributions.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Application Screenshots Gallery</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">
+                    Visual interface tour of the Customer Review Insight AI portal.
+                </p>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Card 1 -->
+                <div class="glass-card gallery-card">
+                    <div class="gallery-placeholder">
+                        <div class="placeholder-icon">📊</div>
+                        <h4>Dashboard Analytics Mockup</h4>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Dashboard Analytics</h3>
+                        <p>Beautiful summaries featuring aggregate sentiment scores, aspect frequencies, and positive/negative trends.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-card gallery-card">
+                    <div class="gallery-placeholder">
+                        <div class="placeholder-icon">📁</div>
+                        <h4>CSV Dataset Upload Interface</h4>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>CSV Upload Interface</h3>
+                        <p>Seamless schema-validated dataset ingestion. Drag, drop, and process bulk review tables instantly.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-card gallery-card">
+                    <div class="gallery-placeholder">
+                        <div class="placeholder-icon">🔎</div>
+                        <h4>Linguistic POS tagging View</h4>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Aspect Extraction Details</h3>
+                        <p>Visualizing spaCy parser tracking down noun chunks and context dependencies in real time.</p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="glass-card gallery-card">
+                    <div class="gallery-placeholder">
+                        <div class="placeholder-icon">📈</div>
+                        <h4>Sentiment Results & Confidence</h4>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Sentiment Classification Results</h3>
+                        <p>Review aspect breakdown matched with their corresponding confidence scores (0.0 to 1.0).</p>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="glass-card gallery-card">
+                    <div class="gallery-placeholder">
+                        <div class="placeholder-icon">📄</div>
+                        <h4>Exported PDF PDF Report</h4>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>PDF Report Export</h3>
+                        <p>Generate styled reports detailing analysis parameters, confidence scores, and aspect clusters.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow" class="section workflow-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Operational Workflow Timeline</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">
+                    How data transitions from raw user input to production-ready database analytics.
+                </p>
+            </div>
+            
+            <div class="workflow-timeline">
+                <!-- Step 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-content glass-card">
+                        <h3>Review Upload</h3>
+                        <p>User registers, authenticates session, and uploads reviews database (.csv) or enters raw copy-paste reviews.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-content glass-card">
+                        <h3>NLP Text Preprocessing</h3>
+                        <p>Text is cleaned, lowercased, and filtered for noise. spaCy performs syntactic tokenization and lemmatization.</p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-content glass-card">
+                        <h3>Aspect Phrase Extraction</h3>
+                        <p>Parts of Speech (POS) tagging tracks down noun phrases and filters modifiers to output candidate aspects.</p>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot">4</div>
+                    <div class="timeline-content glass-card">
+                        <h3>Transformer Inference</h3>
+                        <p>Candidate aspects and context are evaluated by Hugging Face deep learning models to predict sentiment orientation.</p>
+                    </div>
+                </div>
+                <!-- Step 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot">5</div>
+                    <div class="timeline-content glass-card">
+                        <h3>Confidence Estimation</h3>
+                        <p>Softmax logits extract confidence scores, tagging each sentiment prediction with numeric accuracy thresholds.</p>
+                    </div>
+                </div>
+                <!-- Step 6 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot">6</div>
+                    <div class="timeline-content glass-card">
+                        <h3>Visualization & Reports</h3>
+                        <p>Dashboard updates metrics dynamically and enables users to export PDF report templates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Highlights -->
+    <section class="section highlights-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Engineering Key Highlights</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">
+                    Key engineering design highlights suitable for Amazon ML Reviewers and recruiters.
+                </p>
+            </div>
+            <div class="highlights-grid">
+                <div class="highlight-item glass-card">
+                    <div class="highlight-check">⚡</div>
+                    <div>
+                        <h4>Recruiter-Ready Code Quality</h4>
+                        <p>Complete separation of concerns, secure environment variable configuration, clean exception handling, and descriptive DB routing.</p>
+                    </div>
+                </div>
+                <div class="highlight-item glass-card">
+                    <div class="highlight-check">🔒</div>
+                    <div>
+                        <h4>Robust User Sessions</h4>
+                        <p>State authentication managed securely using Flask sessions coupled with PBKDF2 password hashing algorithms.</p>
+                    </div>
+                </div>
+                <div class="highlight-item glass-card">
+                    <div class="highlight-check">📦</div>
+                    <div>
+                        <h4>Optimized Database Structure</h4>
+                        <p>MySQL schema mapping database users, uploaded dataset histories, and parsed raw texts using SQLAlchemy tables.</p>
+                    </div>
+                </div>
+                <div class="highlight-item glass-card">
+                    <div class="highlight-check">🤖</div>
+                    <div>
+                        <h4>State-of-the-Art ML Inference</h4>
+                        <p>Leveraging deep contextual architectures for Aspect level sentiment analysis instead of simplistic bag-of-words heuristics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Improvements Section -->
+    <section class="section future-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Future Platform Roadmap</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">
+                    Planned feature additions and technical upgrades for scaling the system.
+                </p>
+            </div>
+            <div class="future-grid">
+                <div class="future-card glass-card">
+                    <h4>🌐 Multi-Language Support</h4>
+                    <p>Integrate multilingual transformer checkpoints to process reviews in German, Spanish, French, and Hindi.</p>
+                </div>
+                <div class="future-card glass-card">
+                    <h4>🔄 Real-Time Streaming</h4>
+                    <p>Integrate WebSockets (Flask-SocketIO) to stream and analyze social media review feeds in real time.</p>
+                </div>
+                <div class="future-card glass-card">
+                    <h4>🧠 LLM Integration</h4>
+                    <p>Incorporate local Llama/Mistral inference or OpenAI API tokens to generate auto-summarized feedback takeaways.</p>
+                </div>
+                <div class="future-card glass-card">
+                    <h4>🎤 Voice Review Analysis</h4>
+                    <p>Introduce Whisper API audio processing to convert customer call voice records directly into clean text reviews.</p>
+                </div>
+                <div class="future-card glass-card">
+                    <h4>☁️ Cloud Architecture</h4>
+                    <p>Containerize backend microservices via Docker and deploy to AWS ECS/EKS with serverless databases.</p>
+                </div>
+                <div class="future-card glass-card">
+                    <h4>🔍 Vector Search & RAG</h4>
+                    <p>Implement pgvector or Qdrant databases for semantic search across millions of historical user reviews.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section id="author" class="section author-section scroll-reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Developer Profiles & Contacts</h2>
+                <div class="title-underline"></div>
+                <p class="section-description">
+                    Connect with the engineer behind the Customer Review Insight AI platform.
+                </p>
+            </div>
+            
+            <div class="author-card-container">
+                <div class="glass-card author-card">
+                    <div class="author-avatar-placeholder">💻</div>
+                    <h3 class="author-name">GitHub Portfolio Showcase</h3>
+                    <p class="author-role">Full-Stack & Machine Learning Developer</p>
+                    <p class="author-bio">
+                        Passionate about NLP pipeline engineering, secure web application development, and creating highly intuitive visual representations of complex dataset matrices.
+                    </p>
+                    <div class="author-links">
+                        <a href="https://github.com/mv240" target="_blank" class="author-link-btn">
+                            <span class="icon">🐙</span> GitHub Profile
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="author-link-btn">
+                            <span class="icon">💼</span> LinkedIn
+                        </a>
+                        <a href="mailto:mv240@example.com" class="author-link-btn">
+                            <span class="icon">✉️</span> Email Contact
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; 2026 Customer Review Insight AI Showcase. Created for Recruiters & ML Reviewers.</p>
+            <p>Designed with ❤️ using Glassmorphism & Vanilla CSS</p>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
